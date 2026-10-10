@@ -88,6 +88,7 @@ function CoreApp({user}) {
 
   const simulateAttack = () => {
     fetch("http://127.0.0.1:5000/api/demo", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({kind:"tampered"})}).catch(()=>{});
+
     const fake = makeTelemetry("tampered");
     setMode("tampered");
     setTelemetry(fake);
@@ -102,6 +103,7 @@ function CoreApp({user}) {
 
   const simulatePhysiology = () => {
     fetch("http://127.0.0.1:5000/api/demo", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({kind:"physiological"})}).catch(()=>{});
+
     setMode("physiological");
     setTelemetry(makeTelemetry("physiological"));
     setAlarm(false);
@@ -112,6 +114,7 @@ function CoreApp({user}) {
 
   const restoreNormal = () => {
     fetch("http://127.0.0.1:5000/api/demo", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({kind:"normal"})}).catch(()=>{});
+
     setMode("normal"); setTelemetry(makeTelemetry("normal")); setAlarm(false); setIncident(null);
     addEvent("Telemetry stream restored", "Normal physiological relationship confirmed", "safe", "Bio-Firewall", "BIO-AI-01");
     notify("Normal monitoring restored", "safe");
